@@ -24,7 +24,7 @@ Chomsky normal form is also related to other concepts in formal language theory,
 ****
 ## Implementation
 
-   For the implementation of this laboratory I needed 3 classes: ``` Main ```,  ``` UnitTest``` and ``` Grammar ```.
+   For the implementation of this laboratory I needed  ``` 3 ``` classes: ``` Main ```,  ``` UnitTest``` and ``` Grammar ```.
 Next, each class and its functionality will be explained. 
 
 ####  Main Class
