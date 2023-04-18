@@ -8,13 +8,13 @@ if __name__ == '__main__':
     Vn = ['S', 'A', 'B', 'C', 'D']
     Vt = ['a', 'b']
     P = {'S': ['AC', 'bA', 'B', 'aA'],
-         'A': ['ABab', 'aS', 'ε'],
+         'A': ['ABab', 'aS', 'epsilon'],
          'B': ['a', 'bS'],
          'C': ['abC'],
          'D': ['AB']}
 
     grammar = Grammar(S, Vt, Vn, P)
     print(Blue + "\n CFG TO CNF " + END)
-    print(f"\nVar. 15 Grammar:  \nTerminal: {grammar.Vt}\nNon-terminal: {grammar.Vn}\nProductions: {grammar.P}")
+    print(f"\nVar. 15 Grammar:  \nTerminal: {grammar.Vt}\nNon-Terminal: {grammar.Vn}\nProductions: {grammar.P}")
     grammar.toChomskyNormalForm()
-    print(f"Chomsky Normal Form:\nTerminal: {grammar.Vt}\nNon-terminal: {grammar.Vn}\nProductions: {grammar.P}")
+    print(f"Chomsky Normal Form:\nTerminal: {grammar.Vt}\nNon-Terminal: {grammar.Vn}\nProductions: {grammar.P}")
