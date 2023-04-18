@@ -1,27 +1,20 @@
-from lexer import Lexer
+from grammar import Grammar
 
-text = '''16+2+(3-2)*1/1mm
-elif self.text_self = $
-$.mdl
-#the.input\012
-#comment\012
-def magic_function(arr):
-    n = len(arr)
-    for p in range(n):
-            if arr[m] = arr[m+2]:
-'''
+Blue = '\033[94m'
+END = '\033[0m'
 
-lexer = Lexer(text)
-tokens = lexer.lexer()
+if __name__ == '__main__':
+    S = 'S'
+    Vn = ['S', 'A', 'B', 'C', 'D']
+    Vt = ['a', 'b']
+    P = {'S': ['AC', 'bA', 'B', 'aA'],
+         'A': ['ABab', 'aS', 'ε'],
+         'B': ['a', 'bS'],
+         'C': ['abC'],
+         'D': ['AB']}
 
-for token in tokens:
-    print(token)
-
-# def main():
-#   source_code = ""
-#    with open('text.txt', 'r') as file:
-#       source_code = file.read()
-#   lex = lexer.Lexer(text)
-#   print(lex.tokenize())
-# if "__name__" == main():
-#   main()
+    grammar = Grammar(S, Vt, Vn, P)
+    print(Blue + "\n CFG TO CNF " + END)
+    print(f"\nVar. 15 Grammar:  \nTerminal: {grammar.Vt}\nNon-terminal: {grammar.Vn}\nProductions: {grammar.P}")
+    grammar.toChomskyNormalForm()
+    print(f"Chomsky Normal Form:\nTerminal: {grammar.Vt}\nNon-terminal: {grammar.Vn}\nProductions: {grammar.P}")
