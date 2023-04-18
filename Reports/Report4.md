@@ -43,7 +43,7 @@ Next, each class and its functionality will be explained. <p>
 The Grammar class is imported from the grammar module, and the constants Blue and END are defined for colored terminal output.
 The code then creates a grammar object using the Grammar class and prints the original grammar and the grammar in Chomsky Normal Form. <p>
 
-#### Grammar Class
+####   Grammar Class 
 <p align="justify">&ensp;&ensp;&ensp; This is a class that represents a context-free grammar. 
 It contains methods to transform the grammar into Chomsky Normal Form,
 which is a specific form that allows for efficient parsing. 
@@ -65,7 +65,7 @@ The methods are removeEpsilon, removeUnitProductions, removeRemainingUnits , rem
         print("Step 4. Removing Non-Productive: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
         print("--------------------------")
 ````
-* RemoveEpsilon()
+*   RemoveEpsilon()
 <p align="justify">&ensp;&ensp;&ensp; This is a method defined in a Python class that removes epsilon productions from a context-free grammar.
 Epsilon productions are productions that generate an empty string (i.e., a production of the form A -> epsilon, where A is a nonterminal symbol). 
 The method first creates a set to store the non-terminal symbols that generate epsilon productions. It then iterates through each production in the grammar and adds any nonterminal symbols that generate epsilon productions to the set. Next, the method iterates through each production in the grammar again and replaces any occurrence of a nonterminal symbol that generates epsilon with an empty string in the right-hand side of the production. If the resulting string is not already a production for the left-hand side of the production, it is added. 
