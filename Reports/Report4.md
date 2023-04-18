@@ -13,7 +13,7 @@ The conversion of a CFG to Chomsky normal form involves several steps, such as e
 Chomsky normal form is also related to other concepts in formal language theory, such as pushdown automata, the pumping lemma, and the CYK parsing algorithm. It has applications in various fields, such as natural language processing, computational biology, and compiler design. <p>
 
 ## Objectives:
-1. Learn about Chomsky Normal Form (CNF) [1].
+1. Learn about Chomsky Normal Form (CNF) .
 2. Get familiar with the approaches of normalizing a grammar.
 3. Implement a method for normalizing an input grammar by the rules of CNF.
     1. The implementation needs to be encapsulated in a method with an appropriate signature (also ideally in an appropriate class/type).
