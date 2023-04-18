@@ -47,8 +47,9 @@ The code then creates a grammar object using the Grammar class and prints the or
 ####   Grammar Class 
 <p align="justify">&ensp;&ensp;&ensp; This is a class that represents a context-free grammar. 
 It contains methods to transform the grammar into Chomsky Normal Form,
-which is a specific form that allows for efficient parsing. 
-The methods are removeEpsilon, removeUnitProductions, removeRemainingUnits , removeInaccessible, and removeNonProductive. </p>
+which is a specific form that allows for efficient parsing. <p>
+    
+The methods are ``` removeEpsilon ```, ``` removeUnitProductions ``` , ``` removeRemainingUnits```, ``` removeInaccessible```, and ``` removeNonProductive```.
 
 ```` python
     def toChomskyNormalForm(self):
