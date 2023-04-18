@@ -48,7 +48,23 @@ The code then creates a grammar object using the Grammar class and prints the or
 It contains methods to transform the grammar into Chomsky Normal Form,
 which is a specific form that allows for efficient parsing. 
 The methods are removeEpsilon, removeUnitProductions, removeRemainingUnits , removeInaccessible, and removeNonProductive. </p>
-
+```` python
+    def toChomskyNormalForm(self):
+        print("--------------------------")
+        self.removeEpsilon()
+        print("Step 1. Removing Epsilon: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
+        print("--------------------------")
+        self.removeUnitProductions()
+        print("Step 2. Removing Unit Productions: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
+        print("--------------------------")
+        self.removeInaccessible()
+        print("Step 3. Removing Inaccessible: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
+        print("--------------------------")
+        self.removeNonProductive()
+        print("Step 4. Removing Non-Productive: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
+        print("--------------------------")
+        self.removeRemainingUnits()
+````
 * RemoveEpsilon()
 <p align="justify">&ensp;&ensp;&ensp; This is a method defined in a Python class that removes epsilon productions from a context-free grammar.
 Epsilon productions are productions that generate an empty string (i.e., a production of the form A -> epsilon, where A is a nonterminal symbol). 
