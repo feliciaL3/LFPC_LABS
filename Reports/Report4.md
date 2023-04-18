@@ -242,6 +242,7 @@ The algorithm consists of the following steps: </p>
 * Remove unit productions 
 * Remove inaccessible symbols 
 * Remove non-productive symbols 
+
 <p align="justify">&ensp;&ensp;&ensp; The output of each step is printed to the console. The resulting Chomsky normal form is returned as a tuple containing the modified P, Vt, and Vn.
 It is assumed that the input grammar is a context-free grammar, which can be represented using the defined parameters. 
 The output of the algorithm is a context-free grammar in Chomsky normal form. </p>
@@ -288,8 +289,8 @@ Productions: {'S': ['b', 'a', 'ab'], 'B': ['a', 'bS'], 'C': ['abC']}
 is an essential process in computational linguistics. By applying this conversion, we can simplify the grammar rules and make them more manageable for parsing algorithms.
 In this laboratory work, we have successfully converted a given CFG into CNF by following a step-by-step procedure. 
 We first eliminated epsilon productions and unit productions from the CFG. Finally, we converted the remaining productions into CNF.
-In this laboratory work, I ensured the accuracy and correctness of my program by conducting a Unit Test.
-Overall, this laboratory work helped us understand the importance of converting CFG into CNF and how to perform this conversion using a systematic approach.</p>
+In this laboratory work, I ensured the accuracy and correctness of my program by conducting a Unit Test. </p>
+Overall, this laboratory work helped us understand the importance of converting  ``` CFG ``` into ``` CNF ``` and how to perform this conversion using a systematic approach.
 
 ****
 
