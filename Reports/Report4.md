@@ -24,8 +24,8 @@ Chomsky normal form is also related to other concepts in formal language theory,
 ****
 ## Implementation
 
-<p align="justify">&ensp;&ensp;&ensp; For the implementation of this laboratory I needed 3 classes:  Main, UnitTest and Grammar.
-Next, each class and its functionality will be explained. <p>
+   For the implementation of this laboratory I needed 3 classes: ``` Main ```,  ``` UnitTest``` and ``` Grammar ```.
+Next, each class and its functionality will be explained. 
 
 ####  Main Class
 
@@ -39,9 +39,10 @@ Next, each class and its functionality will be explained. <p>
          'C': ['abC'],
          'D': ['AB']}
 
-<p align="justify">&ensp;&ensp;&ensp; This class defines a grammar object and converts the grammar to Chomsky Normal Form using the toChomskyNormalForm() method. The grammar is defined by the variables S, Vn, Vt, and P. 
-The Grammar class is imported from the grammar module, and the constants Blue and END are defined for colored terminal output.
-The code then creates a grammar object using the Grammar class and prints the original grammar and the grammar in Chomsky Normal Form. <p>
+<p align="justify">&ensp;&ensp;&ensp; This class defines a grammar object and converts the grammar to Chomsky Normal Form using the toChomskyNormalForm() method. The grammar is defined by the variables S, Vn, Vt, and P.  <p>
+    
+The  ``` Grammar ``` class is imported from the grammar module, and the constants ``` Blue ``` and ``` END ``` are defined for colored terminal output.
+The code then creates a grammar object using the Grammar class and prints the original grammar and the grammar in Chomsky Normal Form. 
 
 ####   Grammar Class 
 <p align="justify">&ensp;&ensp;&ensp; This is a class that represents a context-free grammar. 
