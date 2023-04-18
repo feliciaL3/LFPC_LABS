@@ -64,7 +64,6 @@ The methods are removeEpsilon, removeUnitProductions, removeRemainingUnits , rem
         self.removeNonProductive()
         print("Step 4. Removing Non-Productive: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
         print("--------------------------")
-        self.removeRemainingUnits()
 ````
 * RemoveEpsilon()
 <p align="justify">&ensp;&ensp;&ensp; This is a method defined in a Python class that removes epsilon productions from a context-free grammar.
