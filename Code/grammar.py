@@ -14,7 +14,7 @@ class Grammar:
         self.removeEpsilon()
         print("Step 1. Removing Epsilon: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
         print("--------------------------")
-        self.removeUnit()
+        self.removeUnitProductions()
         print("Step 2. Removing Unit Productions: \n" + "Vt: ", self.Vt, "\nVn: ", self.Vn, "\nP: ", self.P)
         print("--------------------------")
         self.removeInaccessible()
@@ -33,7 +33,7 @@ class Grammar:
         # Iterate through each variable in the grammar
         for variable, P in self.P.items():
             # If the production for a variable contains epsilon, add it to the set
-            if "ε" in P:
+            if "epsilon" in P:
                 epsilon.add(variable)
 
         for left, right in self.P.items():
@@ -51,12 +51,12 @@ class Grammar:
                         self.P[left] = [x.replace(j, "") for x in self.P[left]]
                         self.P[left].append(i)
                         # If the right-hand side of the production is epsilon, remove it from the list of productions
-                    elif i == "ε":
+                    elif i == "epsilon":
                         self.P[left].remove(i)
 
         return self.P
 
-    def removeUnit(self):
+    def removeUnitProductions(self):
         # For every variable A in the grammar
         for left, right in self.P.items():
             # For every production rule B -> C for A
@@ -70,8 +70,31 @@ class Grammar:
             for prod in new_P:
                 if len(prod) == 1 and prod in self.Vn:
                     # Recursively apply the unit productions
-                    self.removeUnit()
+                    self.removeUnitProductions()
         # Return the modified productions
+        return self.P
+
+    def removeRemainingUnits(self):
+        # For every variable A in the grammar
+        for left, right in self.P.items():
+            new_right = right.copy()
+            # For every production rule B -> C for A
+            for e in right:
+                # If B is a non-terminal and C is a non-terminal
+                if len(e) == 1 and e in self.Vn:
+                    # Find all productions of C and add them to A's productions
+                    if e in self.P:
+                        for prod in self.P[e]:
+                            if prod not in new_right:
+                                new_right.append(prod)
+            self.P[left] = new_right
+        # Remove any remaining unit productions
+        for left, right in self.P.items():
+            new_right = right.copy()
+            for e in right:
+                if len(e) == 1 and e in self.Vn:
+                    new_right.remove(e)
+            self.P[left] = new_right
         return self.P
 
     def removeInaccessible(self):
@@ -81,15 +104,15 @@ class Grammar:
             for r in right:
                 for w in r:
                     accessible.add(w)
+
         # Remove all non-accessible symbols from the grammar
+        removed = []
         for left, right in self.P.items():
-            for a in left:
-                if a in accessible:
-                    continue
-                else:
-                    del self.P[a]
-                    del self.Vn[self.Vn.index(a)]
-                    return self.P
+            if left not in accessible:
+                removed.append(left)
+        for r in removed:
+            del self.P[r]
+            self.Vn.remove(r)
         return self.P
 
     def removeNonProductive(self):
@@ -117,8 +140,7 @@ class Grammar:
                                 new_right.append(r.replace(w, ""))
                         elif w in self.Vt and w not in self.P[left]:  # if terminal symbol not in right side of production, add it
                             new_right.append(r.replace(r, w))
-                        elif w in self.Vt and w in self.P[
-                                left]:  # if terminal symbol already in right side of production
+                        elif w in self.Vt and w in self.P[left]:  # if terminal symbol already in right side of production
                             if len(r) > 2:  # if production has more than 2 symbols, skip it
                                 continue
                             new_right.append(r.replace(w, ""))  # remove terminal symbol
@@ -176,26 +198,3 @@ class Grammar:
                     if symbol not in self.Vt and symbol not in self.S:
                         return 'Type 0'
         return 'Type 1'
-
-    def removeRemainingUnits(self):
-        # For every variable A in the grammar
-        for left, right in self.P.items():
-            new_right = right.copy()
-            # For every production rule B -> C for A
-            for e in right:
-                # If B is a non-terminal and C is a non-terminal
-                if len(e) == 1 and e in self.Vn:
-                    # Find all productions of C and add them to A's productions
-                    if e in self.P:
-                        for prod in self.P[e]:
-                            if prod not in new_right:
-                                new_right.append(prod)
-            self.P[left] = new_right
-        # Remove any remaining unit productions
-        for left, right in self.P.items():
-            new_right = right.copy()
-            for e in right:
-                if len(e) == 1 and e in self.Vn:
-                    new_right.remove(e)
-            self.P[left] = new_right
-        return self.P
