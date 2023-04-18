@@ -1,7 +1,7 @@
 # Laboratory Work Nr.4 Chomsky Normal Form
 ## Course: Formal Languages & Finite Automata
-## Author: Felicia Lupascu
-## Variant 15
+## Author: Felicia Lupascu Var. 15
+
 
 ****
 ## Theory: 
