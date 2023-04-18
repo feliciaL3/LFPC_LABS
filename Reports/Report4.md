@@ -3,7 +3,6 @@
 ## Author: Felicia Lupascu Var. 15
 
 
-****
 ## Theory: 
 <p align="justify">&ensp;&ensp;&ensp; The Chomsky normal form imposes two restrictions on the production rules of a CFG:
 Each production rule must be of the form A → BC or A → a, where A, B, and C are non-terminal symbols, and a is a terminal symbol.
@@ -21,7 +20,9 @@ Chomsky normal form is also related to other concepts in formal language theory,
     3. A BONUS point will be given for the student who will have unit tests that validate the functionality of the project.
     4. Also, another BONUS point would be given if the student will make the aforementioned function to accept any grammar, not only the one from the student's variant.
 
+    
 ****
+    
 ## Implementation
 
    For the implementation of this laboratory I needed  ``` 3 ``` classes: ``` Main ```,  ``` UnitTest``` and ``` Grammar ```.
