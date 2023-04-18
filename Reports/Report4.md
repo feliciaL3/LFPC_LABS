@@ -290,6 +290,7 @@ is an essential process in computational linguistics. By applying this conversio
 In this laboratory work, we have successfully converted a given CFG into CNF by following a step-by-step procedure. 
 We first eliminated epsilon productions and unit productions from the CFG. Finally, we converted the remaining productions into CNF.
 In this laboratory work, I ensured the accuracy and correctness of my program by conducting a Unit Test. </p>
+
 Overall, this laboratory work helped us understand the importance of converting  ``` CFG ``` into ``` CNF ``` and how to perform this conversion using a systematic approach.
 
 ****
