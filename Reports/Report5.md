@@ -120,6 +120,20 @@ The method begins by creating the root node of the ```AST``` using the ParseTree
 
 The method is responsible for parsing a block of code and constructing the corresponding nodes in the abstract syntax tree ```(AST)```.The method begins by creating a new ParseTree node with the type ```"BLOCK"```. This node represents the block of code being parsed.Next, it retrieves the current token from the token list based on the current index ```(self.tokens[self.index])```. This token represents the starting block of the code.
 
+### Parse Expression
+```python
+def parse_expression(self, parent_node):
+        parse_node = ParseTree("EXPRESSION")
+        self.parse_term(parse_node)
+        token_type, token_value = self.tokens[self.index]
+        # Check if the current token is an addition or subtraction operator
+        if token_type in ["ADDITION", "SUBTRACTION"]:
+            parse_node.children.append(ParseTree(token_type, token_value))
+            self.index += 1
+            self.parse_expression(parse_node)  # Recursive call to parse the remaining expression
+        parent_node.children.append(parse_node)
+```
+This code parses an expression by first parsing the term of the expression. It then checks if the current token is an ```addition``` or ```subtraction``` operator, and if so, recursively parses the remaining expression. The resulting parse tree is added as a child of the parent node, representing the overall expression context.
 
 ### Parse Assignment 
 ``` python
@@ -195,13 +209,150 @@ This code defines the ```parse_statement``` method within the ```Parser``` class
 
 If the current token is an ```integer```, ```identifier```, ```decimal```, ```string```, ```boolean```, ```or float```, it adds a new ParseTree node with the corresponding token type and value as a child of the parent_node. The index is incremented to move to the next token.
 
-If the current token does not match any of the expected types mentioned above, it raises an exception with the message "Expected factor". This indicates that the current token does not fit the expected syntax of a factor.
+If the current token does not match any of the expected types mentioned above, it raises an exception with the message ```"Expected factor"```. This indicates that the current token does not fit the expected syntax of a factor.
 
 
-## Conclusions and Results
-<p align="justify">&ensp;&ensp;&ensp; <p>
 
+#Results
 
+The AST starts with the root node labeled as ``` "MATHEMATICAL PROCEDURE"```. Inside the root node, there is a block labeled as ```"BLOCK"``` containing multiple statements and blocks. Each statement or block is represented by a corresponding node.
+
+The ```AST``` visually depicts the nesting of statements and blocks using indentation. For example, there is an if statement with its associated block under a statement, which is itself under the top-level block.
+
+The ```AST``` also includes specific tokens and their values, such as ```identifiers (variables), operators (e.g., multiplication, division)```, and ```parentheses```. These tokens are labeled accordingly and included as children nodes within their respective parent nodes.
+
+```python 
+MATHEMATICAL PROCEDURE
+	BLOCK
+		STARTING_BLOCK: [{]
+		STATEMENT
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				INTEGER: [5]
+				MULTIPLICATION: [*]
+				INTEGER: [3]
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				IDENTIFIER: [n]
+			IF_STATEMENT
+				LEFT_PARENTHESIS: [(]
+				COMPARISON
+					EXPRESSION
+						IDENTIFIER: [m]
+					LESS_THAN: [<]
+					EXPRESSION
+						INTEGER: [50]
+				RIGHT_PARENTHESIS: [)]
+				BLOCK
+					STARTING_BLOCK: [{]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [m]
+								DIVISION: [/]
+								INTEGER: [0]
+							RIGHT_PARENTHESIS: [)]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [m]
+								DIVISION: [/]
+								INTEGER: [0]
+							RIGHT_PARENTHESIS: [)]
+					ENDING_BLOCK: [}]
+				ELSE: [else]
+				BLOCK
+					STARTING_BLOCK: [{]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [n]
+								MULTIPLICATION: [*]
+								IDENTIFIER: [m]
+							RIGHT_PARENTHESIS: [)]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [n]
+								MULTIPLICATION: [*]
+								IDENTIFIER: [m]
+							RIGHT_PARENTHESIS: [)]
+					ENDING_BLOCK: [}]
+		STATEMENT
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				INTEGER: [5]
+				MULTIPLICATION: [*]
+				INTEGER: [3]
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				IDENTIFIER: [n]
+			IF_STATEMENT
+				LEFT_PARENTHESIS: [(]
+				COMPARISON
+					EXPRESSION
+						IDENTIFIER: [m]
+					LESS_THAN: [<]
+					EXPRESSION
+						INTEGER: [50]
+				RIGHT_PARENTHESIS: [)]
+				BLOCK
+					STARTING_BLOCK: [{]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [m]
+								DIVISION: [/]
+								INTEGER: [0]
+							RIGHT_PARENTHESIS: [)]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [m]
+								DIVISION: [/]
+								INTEGER: [0]
+							RIGHT_PARENTHESIS: [)]
+					ENDING_BLOCK: [}]
+				ELSE: [else]
+				BLOCK
+					STARTING_BLOCK: [{]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [n]
+								MULTIPLICATION: [*]
+								IDENTIFIER: [m]
+							RIGHT_PARENTHESIS: [)]
+					STATEMENT
+						PRINT_STATEMENT
+							LEFT_PARENTHESIS: [(]
+							EXPRESSION
+								IDENTIFIER: [n]
+								MULTIPLICATION: [*]
+								IDENTIFIER: [m]
+							RIGHT_PARENTHESIS: [)]
+					ENDING_BLOCK: [}]
+		ENDING_BLOCK: [}]
+```
+
+## Conclusion
+
+<p align="justify">&ensp;&ensp;&ensp;To summarize, the Abstract Syntax Tree (AST) and parser have significant importance in the realm of programming language processing and interpretation. By representing source code in a structured and hierarchical manner, the AST facilitates various operations such as code manipulation, analysis, and transformation. It serves as an intermediary representation that captures both the structure and meaning of the code, enabling more efficient processing and understanding. <p>
     
 ## References
 
