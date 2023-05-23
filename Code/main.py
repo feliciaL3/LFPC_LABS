@@ -1,20 +1,23 @@
-from grammar import Grammar
+from parser import Parser
 
-Blue = '\033[94m'
-END = '\033[0m'
+
+def main():
+    code = """
+    {
+    m = 5*3
+    m = n
+    if (m<50){
+        print(m / 0)
+     }
+    else{
+        print(n * m)
+    }
+}
+"""
+    parser = Parser("text.txt")
+    parser.parse()
+    parser.show_ast()
+
 
 if __name__ == '__main__':
-    S = 'S'
-    Vn = ['S', 'A', 'B', 'C', 'D']
-    Vt = ['a', 'b']
-    P = {'S': ['AC', 'bA', 'B', 'aA'],
-         'A': ['ABab', 'aS', 'epsilon'],
-         'B': ['a', 'bS'],
-         'C': ['abC'],
-         'D': ['AB']}
-
-    grammar = Grammar(S, Vt, Vn, P)
-    print(Blue + "\n CFG TO CNF " + END)
-    print(f"\nVar. 15 Grammar:  \nTerminal: {grammar.Vt}\nNon-Terminal: {grammar.Vn}\nProductions: {grammar.P}")
-    grammar.toChomskyNormalForm()
-    print(f"Chomsky Normal Form:\nTerminal: {grammar.Vt}\nNon-Terminal: {grammar.Vn}\nProductions: {grammar.P}")
+    main()
