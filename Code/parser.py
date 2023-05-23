@@ -13,7 +13,7 @@ class ParseTree:
         indent = "\t" * level
         ret = f"{indent}{self.type}"  # Add the type to the string
         if self.value is not None:
-            ret += f": {str(self.value)}"  # Add the value if it exists
+            ret += f": [{str(self.value)}]"  # Add the value if it exists
         ret += "\n"
         for child in self.children:
             ret += child.__str__(level + 1)  # Add the string representation of child nodes recursively
@@ -160,17 +160,14 @@ class Parser:
 
     def parse_print_instr(self, parent_node):
         parse_node = ParseTree("PRINT_STATEMENT")
-        # Check if the current token is 'PRINT'
-        if self.tokens[self.index][0] == "PRINT":
+        if self.tokens[self.index][0] == "PRINT":         # Check if the current token is 'PRINT'
             self.index += 1
-            # Check if the next token is '('
-            if self.tokens[self.index][0] == "LEFT_PARENTHESIS":
+            if self.tokens[self.index][0] == "LEFT_PARENTHESIS":             # Check if the next token is '('
                 parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                 self.index += 1
                 # Parse the expression within the print statement
                 self.parse_expression(parse_node)
-                # Check if the next token is ')'
-                if self.tokens[self.index][0] == "RIGHT_PARENTHESIS":
+                if self.tokens[self.index][0] == "RIGHT_PARENTHESIS":                 # Check if the next token is ')'
                     parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                     self.index += 1
                 else:
@@ -183,8 +180,7 @@ class Parser:
 
     def parse_comp(self, parent_node):
         parse_node = ParseTree("COMPARISON")
-        # Parse the left side of the comparison expression
-        self.parse_expression(parse_node)
+        self.parse_expression(parse_node)         # Parse the left side of the comparison expression
         # Define the list of valid comparison operators
         comparison_operators = ["EQUAL", "NOT_EQUAL", "LESS_THAN", "LESS_THAN_OR_EQUAL", "GREATER_THAN",
                                 "GREATER_THAN_OR_EQUAL"]
@@ -192,8 +188,7 @@ class Parser:
         if self.tokens[self.index][0] in comparison_operators:
             parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
             self.index += 1
-            # Parse the right side of the comparison expression
-            self.parse_expression(parse_node)
+            self.parse_expression(parse_node)  # Parse the right side of the comparison expression
         else:
             raise Exception("Expected a comparison operator")
         parent_node.children.append(parse_node)
