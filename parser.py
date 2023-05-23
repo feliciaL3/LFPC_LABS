@@ -13,7 +13,7 @@ class ParseTree:
         indent = "\t" * level
         ret = f"{indent}{self.type}"  # Add the type to the string
         if self.value is not None:
-            ret += f": {str(self.value)}"  # Add the value if it exists
+            ret += f": [{str(self.value)}]"  # Add the value if it exists
         ret += "\n"
         for child in self.children:
             ret += child.__str__(level + 1)  # Add the string representation of child nodes recursively
