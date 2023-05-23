@@ -141,7 +141,7 @@ The method is responsible for parsing a block of code and constructing the corre
             raise Exception("Expected identifier")
 ```
 
-This code handles the parsing of an assignment statement, including the identifier, assignment operator, and the expression on the right side of the assignment operator. It constructs the corresponding nodes in the ```AST```, ensuring the correct structure and hierarchy of the ```AST``` nodes.
+This code handles the parsing of an assignment , including the identifier, assignment operator, and the expression on the right side of the assignment operator. It constructs the corresponding nodes in the ```AST```, ensuring the correct structure and hierarchy of the ```AST``` nodes.
 
 
 ### Parse Statement 
@@ -166,8 +166,36 @@ This code handles the parsing of an assignment statement, including the identifi
         parent_node.children.append(parse_node)
 ```
 
-This code defines the parse_statement method within the Parser class. The method is responsible for parsing a statement and constructing the corresponding nodes in the abstract syntax tree ```(AST)```.
+This code defines the ```parse_statement``` method within the ```Parser``` class. The method is responsible for parsing a statement and constructing the corresponding nodes in the abstract syntax tree ```(AST)```.
 
+### Parse Factor
+```python
+    def parse_factor(self, parent_node):
+        # Get the type and value of the current token
+        token_type, token_value = self.tokens[self.index]
+        # Check if the current token is a left parenthesis
+        if token_type == "LEFT_PARENTHESIS":
+            parent_node.children.append(ParseTree(token_type, token_value))
+            self.index += 1
+            self.parse_expression(parent_node)  # Parse the expression within the parentheses
+            token_type, token_value = self.tokens[self.index]
+            # Check if the current token is a right parenthesis
+            if token_type == "RIGHT_PARENTHESIS":
+                parent_node.children.append(ParseTree(token_type, token_value))
+                self.index += 1
+            else:
+                raise Exception("Expected ')'")
+        elif token_type in ["INTEGER",  "IDENTIFIER", "DECIMARL" , "STRING" , "BOOLEAN", "FLOAT" ]:
+            parent_node.children.append(ParseTree(token_type, token_value))
+            self.index += 1
+        # If none of the above conditions are met, raise an exception
+        else:
+            raise Exception("Expected factor")
+```
+
+If the current token is an ```integer```, ```identifier```, ```decimal```, ```string```, ```boolean```, ```or float```, it adds a new ParseTree node with the corresponding token type and value as a child of the parent_node. The index is incremented to move to the next token.
+
+If the current token does not match any of the expected types mentioned above, it raises an exception with the message "Expected factor". This indicates that the current token does not fit the expected syntax of a factor.
 
 
 ## Conclusions and Results
