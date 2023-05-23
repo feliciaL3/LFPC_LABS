@@ -141,7 +141,7 @@ class Parser:
             if self.tokens[self.index][0] == "LEFT_PARENTHESIS":
                 parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                 self.index += 1
-                self.parse_comp(parse_node)
+                self.parse_comp(parse_node)  # Parse the comparison within the 'if' statement
                 if self.tokens[self.index][0] == "RIGHT_PARENTHESIS":
                     parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                     self.index += 1
