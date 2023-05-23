@@ -47,6 +47,7 @@ if __name__ == '__main__':
     main()
 ```
 
+ Inside the ``` main() ``` function, it creates an instance of the Parser class, passing the file name ```"text.txt"``` as a parameter. Then, it calls the ```parse()``` method of the parser object, which parses the content of the file and builds an Abstract Syntax Tree (AST). Finally, it calls the ```show_ast()``` method of the parser object to display the AST. 
 
 
 
