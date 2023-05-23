@@ -1,8 +1,8 @@
 import token as tokens
+import re
 
 
 class Lexer:
-    import re
     tokens_regex = re.compile("|".join(f"(?P<{name}>{regex})" for name, regex in tokens.tokens.items()))
 
     def __init__(self, file_name):
