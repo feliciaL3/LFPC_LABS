@@ -234,7 +234,7 @@ MATHEMATICAL PROCEDURE
 				MULTIPLICATION: [*]
 				INTEGER: [3]
 			ASSIGNMENT_STATEMENT
-              ...................
+              ......................................................
 				
 								IDENTIFIER: [m]
 								DIVISION: [/]
