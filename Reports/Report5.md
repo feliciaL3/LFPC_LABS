@@ -36,6 +36,17 @@ Implement a simple parser program that could extract the syntactic information f
 
 <p align="justify">&ensp;&ensp;&ensp; To implement this laboratory work I selected Python language.  <p>
 
+### Main Class
+
+``` python 4
+def main():
+    parser = Parser("text.txt")
+    parser.parse()
+    parser.show_ast()
+if __name__ == '__main__':
+    main()
+```
+
 
 
 
