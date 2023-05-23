@@ -160,17 +160,14 @@ class Parser:
 
     def parse_print_instr(self, parent_node):
         parse_node = ParseTree("PRINT_STATEMENT")
-        # Check if the current token is 'PRINT'
-        if self.tokens[self.index][0] == "PRINT":
+        if self.tokens[self.index][0] == "PRINT":         # Check if the current token is 'PRINT'
             self.index += 1
-            # Check if the next token is '('
-            if self.tokens[self.index][0] == "LEFT_PARENTHESIS":
+            if self.tokens[self.index][0] == "LEFT_PARENTHESIS":             # Check if the next token is '('
                 parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                 self.index += 1
                 # Parse the expression within the print statement
                 self.parse_expression(parse_node)
-                # Check if the next token is ')'
-                if self.tokens[self.index][0] == "RIGHT_PARENTHESIS":
+                if self.tokens[self.index][0] == "RIGHT_PARENTHESIS":                 # Check if the next token is ')'
                     parse_node.children.append(ParseTree(self.tokens[self.index][0], self.tokens[self.index][1]))
                     self.index += 1
                 else:
