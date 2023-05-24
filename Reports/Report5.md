@@ -224,6 +224,65 @@ The ```AST``` visually depicts the nesting of statements and blocks using indent
 
 The ```AST``` also includes specific tokens and their values, such as ```identifiers (variables), operators (e.g., multiplication, division)```, and ```parentheses```. These tokens are labeled accordingly and included as children nodes within their respective parent nodes.
 
+## Input 1
+```python
+{
+    m = 5*3
+    m = n
+}
+
+```
+## Output 1
+
+```python
+MATHEMATICAL PROCEDURE
+	BLOCK
+		STARTING_BLOCK: [{]
+		STATEMENT
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				INTEGER: [5]
+				MULTIPLICATION: [*]
+				INTEGER: [3]
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				IDENTIFIER: [n]
+		STATEMENT
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				INTEGER: [5]
+				MULTIPLICATION: [*]
+				INTEGER: [3]
+			ASSIGNMENT_STATEMENT
+			IDENTIFIER: [m]
+			ASSIGNMENT: [=]
+			EXPRESSION
+				IDENTIFIER: [n]
+		ENDING_BLOCK: [}]
+```
+
+## Input 2
+```python
+{
+    m = 5*3
+    if (m<50)
+     {
+        print(m / 0)
+     }
+    else
+    {
+        print(n * m)
+}
+}
+```
+
+## Output 2
 ``` python 
 MATHEMATICAL PROCEDURE
 	BLOCK
