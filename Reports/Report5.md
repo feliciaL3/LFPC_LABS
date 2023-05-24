@@ -23,18 +23,18 @@
 
 * Have a type TokenType (like an enum) that can be used in the lexical analysis to categorize the tokens.
 
-Please use regular expressions to identify the type of the token.
+* Please use regular expressions to identify the type of the token.
 
-Implement the necessary data structures for an AST that could be used for the text you have processed in the 3rd lab work.
+* Implement the necessary data structures for an AST that could be used for the text you have processed in the 3rd lab work.
 
-Implement a simple parser program that could extract the syntactic information from the input text.ures/diagrams.
+* Implement a simple parser program that could extract the syntactic information from the input text.ures/diagrams.
 
 
 
 # Implementation description
 
 
-<p align="justify">&ensp;&ensp;&ensp; To implement this laboratory work I selected Python language.  <p>
+<p align="justify">&ensp;&ensp;&ensp; To implement this laboratory work I selected Python language and I added Parser Class.  <p>
 
 ### Main Class
 
@@ -82,7 +82,7 @@ The Parser class also defines several methods for parsing different elements of 
 
 Finally, the Parser class includes a method show_ast that prints the generated AST.
 
-### Parse
+## Parse
 ```  python
     def parse(self):
         # Parse the program and build the AST
@@ -92,7 +92,7 @@ Finally, the Parser class includes a method show_ast that prints the generated A
 The method begins by creating the root node of the ```AST``` using the ParseTree class. The root node is given the type "MATHEMATICAL PROCEDURE". The ```ParseTree``` class represents a node in the ```AST``` and allows for the creation of a hierarchical tree structure to represent the program's structure.
 
 
-### Parse Block
+## Parse Block
 ``` python 
 
     def parse_block(self, parent_node):
@@ -120,7 +120,8 @@ The method begins by creating the root node of the ```AST``` using the ParseTree
 
 The method is responsible for parsing a block of code and constructing the corresponding nodes in the abstract syntax tree ```(AST)```.The method begins by creating a new ParseTree node with the type ```"BLOCK"```. This node represents the block of code being parsed.Next, it retrieves the current token from the token list based on the current index ```(self.tokens[self.index])```. This token represents the starting block of the code.
 
-### Parse Expression
+## Parse Expression
+
 ```python
 def parse_expression(self, parent_node):
         parse_node = ParseTree("EXPRESSION")
@@ -133,9 +134,10 @@ def parse_expression(self, parent_node):
             self.parse_expression(parse_node)  # Recursive call to parse the remaining expression
         parent_node.children.append(parse_node)
 ```
+
 This code parses an expression by first parsing the term of the expression. It then checks if the current token is an ```addition``` or ```subtraction``` operator, and if so, recursively parses the remaining expression. The resulting parse tree is added as a child of the parent node, representing the overall expression context.
 
-### Parse Assignment 
+## Parse Assignment 
 ``` python
     def parse_assignment(self, parent_node):
         token_type, token_value = self.tokens[self.index]
@@ -158,7 +160,7 @@ This code parses an expression by first parsing the term of the expression. It t
 This code handles the parsing of an assignment , including the identifier, assignment operator, and the expression on the right side of the assignment operator. It constructs the corresponding nodes in the ```AST```, ensuring the correct structure and hierarchy of the ```AST``` nodes.
 
 
-### Parse Statement 
+## Parse Statement 
 
 ``` python
     def parse_statement(self, parent_node):
@@ -182,7 +184,7 @@ This code handles the parsing of an assignment , including the identifier, assig
 
 This code defines the ```parse_statement``` method within the ```Parser``` class. The method is responsible for parsing a statement and constructing the corresponding nodes in the abstract syntax tree ```(AST)```.
 
-### Parse Factor
+## Parse Factor
 ```python
     def parse_factor(self, parent_node):
         # Get the type and value of the current token
@@ -215,13 +217,14 @@ If the current token does not match any of the expected types mentioned above, i
 
 # Results
 
+
 The AST starts with the root node labeled as ``` "MATHEMATICAL PROCEDURE"```. Inside the root node, there is a block labeled as ```"BLOCK"``` containing multiple statements and blocks. Each statement or block is represented by a corresponding node.
 
 The ```AST``` visually depicts the nesting of statements and blocks using indentation. For example, there is an if statement with its associated block under a statement, which is itself under the top-level block.
 
 The ```AST``` also includes specific tokens and their values, such as ```identifiers (variables), operators (e.g., multiplication, division)```, and ```parentheses```. These tokens are labeled accordingly and included as children nodes within their respective parent nodes.
 
-```python 
+``` python 
 MATHEMATICAL PROCEDURE
 	BLOCK
 		STARTING_BLOCK: [{]
@@ -234,7 +237,7 @@ MATHEMATICAL PROCEDURE
 				MULTIPLICATION: [*]
 				INTEGER: [3]
 			ASSIGNMENT_STATEMENT
-              ......................................................
+              ..................................
 				
 								IDENTIFIER: [m]
 								DIVISION: [/]
