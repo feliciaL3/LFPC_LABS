@@ -232,7 +232,7 @@ The ```AST``` also includes specific tokens and their values, such as ```identif
 }
 
 ```
-## Output 1
+### Output 1
 
 ```python
 MATHEMATICAL PROCEDURE
@@ -282,7 +282,7 @@ MATHEMATICAL PROCEDURE
 }
 ```
 
-## Output 2
+### Output 2
 ``` python 
 MATHEMATICAL PROCEDURE
 	BLOCK
